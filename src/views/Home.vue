@@ -38,7 +38,7 @@
 					<li v-for="(item,index) in $router.options.routes" v-if="!item.hidden" class="el-submenu item">
 						<template v-if="!item.leaf">
 							<div class="el-submenu__title" style="padding-left: 20px;" @mouseover="showMenu(index,true)" @mouseout="showMenu(index,false)"><i :class="item.iconCls"></i></div>
-							<ul class="el-menu submenu" :class="'submenu-hook-'+index" @mouseover="showMenu(index,true)" @mouseout="showMenu(index,false)"> 
+							<ul class="el-menu submenu" :class="'submenu-hook-'+index" @mouseover="showMenu(index,true)" @mouseout="showMenu(index,false)">
 								<li v-for="child in item.children" v-if="!child.hidden" :key="child.path" class="el-menu-item" style="padding-left: 40px;" :class="$route.path==child.path?'is-active':''" @click="$router.push(child.path)">{{child.name}}</li>
 							</ul>
 						</template>
@@ -140,7 +140,7 @@
 
 <style scoped lang="scss">
 	@import '~scss_vars';
-	
+
 	.container {
 		position: absolute;
 		top: 0px;
@@ -235,10 +235,16 @@
 				flex:0 0 60px;
 				width: 60px;
 			}
-			.menu-expanded{
-				flex:0 0 230px;
+            .menu-expanded {
+				flex: 0 0 230px;
 				width: 230px;
-			}
+                    .el-menu {
+                        width: 100% !important;
+                    }
+                    .el-submenu .el-menu-item {
+                        min-width: 0px !important;
+                    }
+            }
 			.content-container {
 				// background: #f1f2f7;
 				flex:1;
